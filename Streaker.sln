@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{747CC958-8834-40F2-9843-41C0B01DA1C0}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +10,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Streaker.Core", "Streaker.Core\Streaker.Core.csproj", "{0EC3D89B-716E-43AE-A52F-925233998A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Streaker.SharedKernel", "Streaker.SharedKernel\Streaker.SharedKernel.csproj", "{461E812E-1E2F-42C0-8D46-BC40B14342BC}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EC3D89B-716E-43AE-A52F-925233998A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC3D89B-716E-43AE-A52F-925233998A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC3D89B-716E-43AE-A52F-925233998A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC3D89B-716E-43AE-A52F-925233998A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461E812E-1E2F-42C0-8D46-BC40B14342BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461E812E-1E2F-42C0-8D46-BC40B14342BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461E812E-1E2F-42C0-8D46-BC40B14342BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461E812E-1E2F-42C0-8D46-BC40B14342BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
