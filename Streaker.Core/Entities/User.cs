@@ -9,10 +9,10 @@ namespace Streaker.Core.Entities
     /// </summary>
     public class User : EntityBase<int>, IIdentity
     {
-        public string? Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [NotMapped]
-        public string? AuthenticationType { get; set; }
+        public string AuthenticationType { get; set; } = string.Empty;
 
         [NotMapped]
         public bool IsAuthenticated { get; set; }
