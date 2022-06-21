@@ -1,7 +1,16 @@
 ﻿namespace Streaker.SharedKernel
 {
-    public class DatedEntityBase<T> : EntityBase<T> where T : notnull
+    public abstract class DatedEntityBase<T> : EntityBase<T> where T : notnull
     {
-        public DateTime Created { get; set; }
+        private DateTime utcDateTime;
+
+        /// <summary>
+        /// Gets the entity's creation date in UTC.
+        /// </summary>
+        public DateTime Created
+        {
+            get => this.utcDateTime;
+            set => this.utcDateTime = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
     }
 }

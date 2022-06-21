@@ -21,7 +21,7 @@ namespace Streaker.Core.Aggregates
         {
             this.User = user;
             this.Task = task;
-            this.lastTime = task.Created;
+            this.LastTime = task.Created;
         }
 
         public UserUndertaking(User user, Undertaking task, int streak)
@@ -33,7 +33,7 @@ namespace Streaker.Core.Aggregates
         public UserUndertaking(User user, Undertaking task, int streak, DateTime last)
             : this(user, task, streak)
         {
-            this.lastTime = last;
+            this.LastTime = last;
         }
 
         /// <summary>
@@ -52,16 +52,13 @@ namespace Streaker.Core.Aggregates
         public int CurrentStreak { get; set; }
 
         /// <summary>
-        /// Gets or sets the last time this user completed the task.
+        /// Gets or sets the last time this user completed the task in UTC.
         /// </summary>
-        /// <remarks></remarks>
-        public DateTime LastTime { get
-            {
-                return this.lastTime > this.Task.Created ? this.lastTime : this.Task.Created;
-            }
+        public DateTime LastTime {
+            get => this.lastTime > this.Task.Created ? this.lastTime : this.Task.Created;
             set
             {
-                this.lastTime = value;
+                this.lastTime = DateTime.SpecifyKind(value, DateTimeKind.Utc);
             }
         }
 
