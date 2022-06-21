@@ -1,4 +1,6 @@
 ﻿using Streaker.Core.Entities;
+using Streaker.Core.Extensions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Streaker.Core.Aggregates
 {
@@ -62,5 +64,11 @@ namespace Streaker.Core.Aggregates
                 this.lastTime = value;
             }
         }
+
+        /// <summary>
+        /// Gets the date/time the streak will expire.
+        /// </summary>
+        [NotMapped]
+        public DateTime StreakExpiry => this.LastTime.AddFrequency(this.Task.Units, this.Task.Frequency);
     }
 }
