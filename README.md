@@ -1,2 +1,2 @@
-# streaker
+# Streaker
 Gamify anything
