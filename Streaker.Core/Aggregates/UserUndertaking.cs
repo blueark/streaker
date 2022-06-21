@@ -10,6 +10,7 @@ namespace Streaker.Core.Aggregates
     public class UserUndertaking
     {
         private DateTime lastTime = default;
+        private int currentStreak = 0;
 
         public UserUndertaking()
         {
@@ -49,7 +50,14 @@ namespace Streaker.Core.Aggregates
         /// <summary>
         /// Gets or sets this user's current streak.
         /// </summary>
-        public int CurrentStreak { get; set; }
+        public int CurrentStreak {
+            get
+            {
+                var now = DateTime.UtcNow;
+                return now <= this.StreakExpiry ? this.currentStreak : 0;
+            }
+            set { this.currentStreak = value >= 0 ? value : 0; }
+        }
 
         /// <summary>
         /// Gets or sets the last time this user completed the task in UTC.
@@ -67,5 +75,15 @@ namespace Streaker.Core.Aggregates
         /// </summary>
         [NotMapped]
         public DateTime StreakExpiry => this.LastTime.AddFrequency(this.Task.Units, this.Task.Frequency);
+
+        /// <summary>
+        /// Completes a task and updates the current streak.
+        /// </summary>
+        public void CompleteTask()
+        {
+            var now = DateTime.UtcNow;
+            this.CurrentStreak = now <= this.StreakExpiry ? this.CurrentStreak + 1 : 1;
+            this.LastTime = now;
+        }
     }
 }

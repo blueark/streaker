@@ -76,5 +76,45 @@
 
             Assert.Equal(expected, actual.StreakExpiry);
         }
+
+        [Fact]
+        public void CheckStreakIsZeroIfTimeElapsed()
+        {
+            var oldStreak = 5;
+            var baseDate = new DateTime(2000, 1, 1);
+            var user = new User();
+            var task = new Undertaking() { Created = baseDate };
+            var actual = new UserUndertaking(user, task, oldStreak);
+
+            Assert.Equal(0, actual.CurrentStreak);
+        }
+
+        [Fact]
+        public void CompleteTaskWithinTime()
+        {
+            var oldStreak = 5;
+            var baseDate = DateTime.Now.AddHours(-12);
+            var user = new User();
+            var task = new Undertaking() { Created = baseDate };
+            var actual = new UserUndertaking(user, task, oldStreak);
+            var expected = oldStreak + 1;
+            actual.CompleteTask();
+
+            Assert.Equal(expected, actual.CurrentStreak);
+        }
+
+        [Fact]
+        public void CompleteTaskLate()
+        {
+            var oldStreak = 5;
+            var baseDate = DateTime.Now.AddDays(-2);
+            var user = new User();
+            var task = new Undertaking() { Created = baseDate };
+            var actual = new UserUndertaking(user, task, oldStreak);
+            var expected = 1;
+            actual.CompleteTask();
+
+            Assert.Equal(expected, actual.CurrentStreak);
+        }
     }
 }
