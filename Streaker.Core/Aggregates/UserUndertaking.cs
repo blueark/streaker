@@ -7,6 +7,8 @@ namespace Streaker.Core.Aggregates
     /// </summary>
     public class UserUndertaking
     {
+        private DateTime lastTime = default;
+
         public UserUndertaking()
         {
             this.User = new User();
@@ -17,7 +19,7 @@ namespace Streaker.Core.Aggregates
         {
             this.User = user;
             this.Task = task;
-            this.LastTime = task.Created;
+            this.lastTime = task.Created;
         }
 
         public UserUndertaking(User user, Undertaking task, int streak)
@@ -29,7 +31,7 @@ namespace Streaker.Core.Aggregates
         public UserUndertaking(User user, Undertaking task, int streak, DateTime last)
             : this(user, task, streak)
         {
-            this.LastTime = last;
+            this.lastTime = last;
         }
 
         /// <summary>
@@ -50,6 +52,15 @@ namespace Streaker.Core.Aggregates
         /// <summary>
         /// Gets or sets the last time this user completed the task.
         /// </summary>
-        public DateTime LastTime { get; set; }
+        /// <remarks></remarks>
+        public DateTime LastTime { get
+            {
+                return this.lastTime > this.Task.Created ? this.lastTime : this.Task.Created;
+            }
+            set
+            {
+                this.lastTime = value;
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Streaker.Core.Entities
         /// <summary>
         /// Gets or sets the number of times this task should be completed in the given time period.
         /// </summary>
-        public int Frequency { get; set; }
+        public int Frequency { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the time period to apply to the task frequency.
